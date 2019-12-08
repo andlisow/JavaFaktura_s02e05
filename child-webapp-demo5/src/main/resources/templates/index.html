@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/w3.css}" />
+    <title>Baby name chooser</title>
+</head>
+
+<body style="background-color: #FFE1B0">
+    <h1 class="header" th:text="${child.name}"></h1>
+    <img class="img" width="100px" th:src="${child.gender eq T(io.github.javafaktura.s02e05.child.core.model.Gender).MALE} ? @{images/boy.png} : @{images/girl.png}" />
+    <p class="description">To imię wybrało <b th:text="${child.occurrences}" /> rodzin (dane z pierwszej połowy 2019 roku)</p>
+    <img class="img" src="../static/images/parents.webp" width="500" th:src="@{images/parents.webp}"/>
+
+
+    <form class="w3-container" action="#" th:action="@{/choice}" th:object="${choice}" method="post">
+        <p>Imię <input type="text" class="w3-input" th:field="*{name}" /></p>
+        <p><input type="submit" class="w3-btn w3-blue" value="Wybieram!" /></p>
+    </form>
+</body>
+</html>
