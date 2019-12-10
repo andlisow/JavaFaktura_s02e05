@@ -1,7 +1,6 @@
 package io.github.javafaktura.s02e05.demo3;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("andrzej")
                 .password("andrzej")
-                .roles("ADMIN");
+                .roles("ADMIN", "USER");
     }
 
     @Bean
@@ -34,4 +33,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .and().formLogin();
+    }
 }

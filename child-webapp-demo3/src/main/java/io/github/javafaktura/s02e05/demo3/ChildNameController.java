@@ -28,7 +28,6 @@ public class ChildNameController {
         this.childNameService = childNameChooser;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/")
     public String index(@RequestParam(required = false) Gender gender,
             @RequestParam(required = false) Popularity popularity,

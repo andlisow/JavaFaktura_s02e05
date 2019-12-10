@@ -1,4 +1,4 @@
-package io.github.javafaktura.s02e05.demo4;
+package io.github.javafaktura.s02e05.demo5;
 
 import org.junit.Before;
 import org.junit.Test;

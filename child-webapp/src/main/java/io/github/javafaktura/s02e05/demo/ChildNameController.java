@@ -6,12 +6,13 @@ import io.github.javafaktura.s02e05.child.core.model.ParentChoice;
 import io.github.javafaktura.s02e05.child.core.model.ParentPreferences;
 import io.github.javafaktura.s02e05.child.core.model.Popularity;
 import io.github.javafaktura.s02e05.child.core.service.ChildNameMemoryService;
-//import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ChildNameController {
@@ -40,9 +41,7 @@ public class ChildNameController {
         return "index";
     }
 
-//    @Secured({"ADMIN", "USER"})
-//    @RolesAllowed("ADMIN") ??
-//    @PreAuthorize("hasRole('ADMIN') AND hasRole('USER')")
+
     @GetMapping("/all")
     public String all(Model model) {
         model.addAttribute("boys",  childNameService.getAll(new ParentPreferences(Gender.MALE)));

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.security.RolesAllowed;
+
 
 @Controller
 public class ChildNameController {
@@ -42,6 +44,7 @@ public class ChildNameController {
         return "index";
     }
 
+    @RolesAllowed("ADMIN")
     @GetMapping("/all")
     public String all(Model model) {
         model.addAttribute("boys", childNameService.getAll(new ParentPreferences(Gender.MALE)));

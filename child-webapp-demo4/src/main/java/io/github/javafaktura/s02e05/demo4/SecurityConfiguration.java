@@ -26,11 +26,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("andrzej")
                 .password("andrzej")
-                .roles("ADMIN");
+                .roles("ADMIN", "USER");
     }
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .and().formLogin();
     }
 }
